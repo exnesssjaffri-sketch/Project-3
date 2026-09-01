@@ -7,11 +7,14 @@
  * ─────────────────────────────────────────────────────────────
  *  1. Push this server/ folder to GitHub (separate repo or monorepo).
  *  2. In Render, go to Dashboard → New → Web Service → connect your repo.
- *  3. Build Command:     npm install
- *     Start Command:     node index.js
+ *  3. Root Directory:    server
+ *     Build Command:     npm install
+ *     Start Command:     npm start
  *  4. Attach a Persistent Disk:
  *       Name:       data
- *       Mount Path: /opt/render/project/src/data
+ *       Mount Path: /opt/render/project/src/server/data
+ *                   (must match the data/ dir next to index.js — since Root
+ *                    Directory is 'server', __dirname resolves to .../server)
  *       Size:       1 GB
  *  5. Environment Variables:
  *       NODE_ENV=production

@@ -30,4 +30,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# next-env.d.ts must be committed (it contains the Next.js type references
+# required for CSS imports etc.) — see https://nextjs.org/docs/app/building-your-application/configuring/typescript

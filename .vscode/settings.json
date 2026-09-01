@@ -1,0 +1,9 @@
+{
+  // Prevent VS Code's built-in CSS language server from flagging Tailwind's
+  // custom at-rules (@tailwind base/components/utilities) as "Unknown at rule".
+  "css.lint.unknownAtRules": "ignore",
+  // Suppress the same warning for other CSS dialects (scss, less, etc.) in case
+  // any are used in the project.
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore"
+}

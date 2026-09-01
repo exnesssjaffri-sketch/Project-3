@@ -1,0 +1,28 @@
+# Trello Clone — Project Rules
+
+## Architecture Boundaries
+- Frontend (client/,Vercel) and backend (server/,Render) are separate deployments. Never import backend code into frontend..
+- The Node.js + Socket.io server on Render is the ONLY backend. Never use Next.js API routes for WebSocket or for board data..
+- Do NOT use Supabase, Firebase, or any external database service. The JSON file on Render's persistent disk is the ONLY source of truth..
+
+## Socket.io Conventions
+- The Socket.io client must be a singleton. Never create multiple io() instances — always import the shared instance from client/lib/socket.ts..
+- Always optimistic update local state BEFORE emitting socket events..
+- Handle socket disconnect gracefully — show connection UI state, never crash..
+- Keep drag-and-drop logic isolated from socket logic: Board.tsx handles DnD, page.tsx handles socket events and state..
+- All socket event handlers on the server must wrap logic in try/catch and report errors via socket error events..
+
+## Storage & Deployment
+- JSON file path must stay relative and inside the data/ directory for Render persistent-disk compatibility (fs.mkdirSync data/ on boot).
+- CORS must allow all origins for Render-Vercel communication..
+- The server seeds board.json automatically on first boot if missing..
+
+## TypeScript
+- Use TypeScript strict mode..
+- Define interfaces for Task, Column, and BoardData..
+- Never use 'any'. Define proper types for socket event payloads..
+- Use the @/* path alias for imports inside client/src files where applicable..
+
+## Quality
+- No placeholder functions, empty handlers, or TODO comments..
+- All user-facing copy must be in English..
